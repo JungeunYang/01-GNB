@@ -25,6 +25,23 @@ li {
   justify-content: space-between;
   align-items: center;
 }
+
+/* 메뉴 배경으로 떨어지는 부분 */
+#header::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 100px;
+  left: 0;
+  width: 100%;
+  height: 0px;
+  background: blue;
+  transition: 0.3s;
+}
+#header.active::before {
+  height: 300px;
+}
+
 .gnb {
   display: flex;
 }
@@ -46,7 +63,7 @@ li {
   left: 0;
   width: 100%; /* 가로크기 정의해 주지 않으면 쪼그라듬->100%하면 자기 부모크기 기준 100% */
   /* background: #ff5; */
-  padding-top: 20px;
+  padding-top: 28px;
 
   /* jQuery 슬라이드 업/다운 효과를 위한 설정 */
   display: none;
