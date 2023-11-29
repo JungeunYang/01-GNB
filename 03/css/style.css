@@ -1,0 +1,115 @@
+@charset 'utf-8';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+.inner {
+  width: 1200px;
+  margin: 0 auto;
+  height: 100%;
+}
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  transition: 0.3s;
+}
+#header nav {
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* 메뉴 떨어지는 세팅 */
+#header::before {
+  content: '';
+  position: absolute;
+  top: -400px;
+  left: 0;
+  width: 100%;
+  height: 400px;
+  background: rgb(54, 54, 139);
+  transition: 0.3s;
+}
+
+#header.active::before {
+  top: 0;
+}
+
+#header .logo {
+  /* 떨어지는 메뉴에 로고가 가려지니까 로고를 위로 올려줘야함
+  z-index 줘야함
+  z-index를 줄 수 있는 경우
+  1. position:static외의 모든것
+  2. display:flex;의 아이템일 경우
+  현재 로고는 flex 아이템이라 그냥 z-index를 주면 되는데 만약 플렉스 공간의 아이템이 아니라면
+  position:relative;를 주면 됨 ->position:absolute;는 위치를 다 다시 잡아줘야 하기 때문에 안좋은 코딩  */
+  z-index: 5;
+}
+#header.active .logo {
+  background: #fff;
+}
+
+#header.hide {
+  top: -100px;
+}
+
+.gnb {
+  display: flex;
+}
+.gnb > li {
+  position: relative; /* submenu 위치 지정을 위한 기준점 */
+}
+/* jQuery에서 on 클래스를 부여했을 때 디자인->.on붙여줘야 li이면서 자손인 on */
+.gnb > li.on {
+  background: #f39;
+}
+.gnb > li > a {
+  display: block;
+  padding: 10px 40px;
+  border: 1px solid #fff;
+}
+.submenu {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  width: 100%; /* 가로크기 정의해 주지 않으면 쪼그라듬->100%하면 자기 부모크기 기준 100% */
+  /* background: #ff5; */
+  padding-top: 20px;
+
+  /* jQuery 슬라이드 업/다운 효과를 위한 설정 */
+  display: none;
+}
+
+.submenu li a {
+  display: block;
+  border: 1px solid #ff5;
+  padding: 10px;
+  text-align: center;
+  background: #f00;
+  color: #fff;
+}
+
+.submenu li a:hover {
+  background: rgb(129, 5, 5);
+}
+
+#container {
+  padding: 150px 0;
+}
+#footer {
+  padding: 50px;
+  text-align: center;
+  color: #fff;
+  background: #333;
+}
